@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +20,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -67,7 +66,7 @@ public class Product {
     private List<Rating>ratings=new ArrayList<>();
     
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Review>reviews=new ArrayList<>();
+    private List<Review> reviews=new ArrayList<>();
 
     @Column(name = "num_ratings")
     private int numRatings;

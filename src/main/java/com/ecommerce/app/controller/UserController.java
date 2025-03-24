@@ -24,7 +24,7 @@ import com.ecommerce.app.dto.UserInfoResponse;
 import com.ecommerce.app.repository.RoleRepository;
 import com.ecommerce.app.repository.UserRepository;
 import com.ecommerce.app.security.jwt.JwtUtils;
-import com.ecommerce.app.services.UserDetailsImpl;
+import com.ecommerce.app.security.userdetails.UserDetailsImpl;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.ecommerce.app.services;
+package com.ecommerce.app.security.userdetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
