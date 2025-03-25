@@ -1,6 +1,7 @@
 package com.ecommerce.app.serviceImpl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ecommerce.app.domain.Category;
 import com.ecommerce.app.domain.Product;
 import com.ecommerce.app.dto.ProductDto;
+import com.ecommerce.app.exception.ProductException;
 import com.ecommerce.app.repository.CategoryRepository;
 import com.ecommerce.app.repository.ProductRepository;
 import com.ecommerce.app.services.ProductService;
@@ -37,7 +39,6 @@ public class ProductServiceImplementation implements ProductService{
 		Category secondLevel=categoryRepository.
 				findByNameAndParant(productDto.getSecondLavelCategory(),firstLevel.getName());
 		if(secondLevel==null) {
-
 			Category secondLavelCategory=new Category();
 			secondLavelCategory.setName(productDto.getSecondLavelCategory());
 			secondLavelCategory.setParentCategory(secondLavelCategory);
@@ -57,7 +58,7 @@ public class ProductServiceImplementation implements ProductService{
 
 			thirdLevel= categoryRepository.save(thirdLavelCategory);
 		}
-		
+
 		Product product = new Product();
 		product.setTitle(productDto.getTitle());
 		product.setQuantity(productDto.getQuantity());
@@ -69,14 +70,44 @@ public class ProductServiceImplementation implements ProductService{
 		product.setCategory(thirdLevel);
 		product.setImageUrl(productDto.getImageUrl());
 		product.setCreatedAt(LocalDateTime.now());
-		
+
 		Product savedProduct = productRepository.save(product);
 		System.out.println("$$$$$$$$$$$$$$$$$ Products:: "+ savedProduct);
 
 		return savedProduct;
 
 	}
+	
+	@Override
+	public List<Product> getAllProducts() {
+		return productRepository.findAll();
+	}
 
+	@Override
+	public Product updateProduct(Product product, Long id) {
+		Product updateProduct = productRepository.findById(id).get();
+		if(product.getQuantity()!=0) {
+			updateProduct.setQuantity(product.getQuantity());
+		}
+		if(product.getDescription()!=null) {
+			updateProduct.setDescription(product.getDescription());
+		}	
+		
+		return productRepository.save(product);
+	}
+
+	@Override
+	public String deleteProduct(Long id) throws ProductException {
+		
+		Product product=productRepository.findById(id).get();
+		
+		System.out.println("delete product "+product.getId()+" - "+id);
+		product.getSizes().clear();
+		productRepository.delete(product);
+		
+		return "Product deleted Successfully";
+	}
+	
 
 
 }
