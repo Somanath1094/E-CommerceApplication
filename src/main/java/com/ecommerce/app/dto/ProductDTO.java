@@ -4,9 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 import com.ecommerce.app.domain.Size;
 
-public class ProductDto {
+public class ProductDTO {
 
-	private String title;
+	private Long id;
+	
+	private String productName;
 
 	private String description;
 
@@ -26,14 +28,17 @@ public class ProductDto {
 
 	private String imageUrl;
 
-	private String firstLavelCategory;
-	private String secondLavelCategory;
-	private String thirdLavelCategory;
-	public String getTitle() {
-		return title;
+	public Long getId() {
+		return id;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	public String getDescription() {
 		return description;
@@ -89,25 +94,6 @@ public class ProductDto {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	public String getFirstLavelCategory() {
-		return firstLavelCategory;
-	}
-	public void setFirstLavelCategory(String firstLavelCategory) {
-		this.firstLavelCategory = firstLavelCategory;
-	}
-	public String getSecondLavelCategory() {
-		return secondLavelCategory;
-	}
-	public void setSecondLavelCategory(String secondLavelCategory) {
-		this.secondLavelCategory = secondLavelCategory;
-	}
-	public String getThirdLavelCategory() {
-		return thirdLavelCategory;
-	}
-	public void setThirdLavelCategory(String thirdLavelCategory) {
-		this.thirdLavelCategory = thirdLavelCategory;
-	}
-	
 	
 
 }

@@ -8,10 +8,10 @@ import com.ecommerce.app.domain.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long>{
 
-	Category findByName(String name);
+//	Category findByCategoryName(String categoryName);
 	
 
-	@Query("Select c from Category c where c.name=:name AND c.parentCategory.name=:parentCategoryName")
-	Category findByNameAndParant(@Param("name") String name, @Param("parentCategoryName")String parentCategoryName);
+//	@Query("Select c from Category c where c.categoryName.name=:categoryName")
+//	Category findByNameAndParant(@Param("categoryName") String categoryName);
 
 }

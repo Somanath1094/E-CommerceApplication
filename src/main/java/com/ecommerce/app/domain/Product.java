@@ -30,8 +30,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "product_name")
+    private String productName;
 
     @Column(name = "description")
     private String description;
@@ -71,9 +71,8 @@ public class Product {
     @Column(name = "num_ratings")
     private int numRatings;
     
-
-    @ManyToOne()
-    @JoinColumn(name="category_id")
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
     
     private LocalDateTime createdAt;
@@ -81,17 +80,14 @@ public class Product {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getTitle() {
-		return title;
+	public String getProductName() {
+		return productName;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public String getDescription() {

@@ -1,8 +1,10 @@
 package com.ecommerce.app.controller;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.app.domain.Product;
 import com.ecommerce.app.dto.ApiResponse;
-import com.ecommerce.app.dto.ProductDto;
+import com.ecommerce.app.dto.ProductDTO;
 import com.ecommerce.app.exception.ProductException;
 import com.ecommerce.app.services.ProductService;
 
@@ -30,19 +32,11 @@ public class ProductController {
 	private ProductService productService;
 	
 	
-	@PostMapping("/createProduct")
-	public ResponseEntity<Product> createAdminProduct(@RequestBody ProductDto productDto) throws ProcessorException{
+	@PostMapping("/createProduct/{categoryId}")
+	public ResponseEntity<Product> createAdminProduct(@RequestBody ProductDTO productDto, @PathVariable Long categoryId) throws ProcessorException{
 		
-		Product product = productService.createProduct(productDto);
-		return new ResponseEntity<Product>(product, HttpStatus.ACCEPTED);
-	}
-	
-	@GetMapping("/getAllProduct")
-	public ResponseEntity<List<Product>> findAllProduct(){
-		
-		List<Product> products = productService.getAllProducts();
-		
-		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
+		Product product = productService.createProduct(categoryId,productDto);
+		return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping("/updateByProductId/{id}")
@@ -63,4 +57,12 @@ public class ProductController {
 		return new ResponseEntity<ApiResponse>(res,HttpStatus.ACCEPTED);
 		
 	}
+
+	@GetMapping("/public/products")
+	public ResponseEntity<Page<Product>> getAllProducts(Optional<String> searchText, Pageable pageable) {
+		Page<Product> page = productService.findAll(searchText,pageable);
+		return ResponseEntity.ok(page);
+	}
+
+    
 }
