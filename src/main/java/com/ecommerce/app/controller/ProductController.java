@@ -30,32 +30,31 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
-	
-	@PostMapping("/createProduct/{categoryId}")
+
+
+	@PostMapping("/admin/product/{categoryId}")
 	public ResponseEntity<Product> createAdminProduct(@RequestBody ProductDTO productDto, @PathVariable Long categoryId) throws ProcessorException{
-		
+
 		Product product = productService.createProduct(categoryId,productDto);
 		return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
 	}
-	
-	@PutMapping("/updateByProductId/{id}")
+
+	@PutMapping("/admin/products/{id}")
 	public ResponseEntity<Product> updateProductHandler(@RequestBody Product req,@PathVariable Long id) throws ProductException{
-		
+
 		Product updatedProduct=productService.updateProduct(req, id);
-		
+
 		return new ResponseEntity<Product>(updatedProduct,HttpStatus.OK);
 	}
-	
-	@DeleteMapping("/deleteByProductId/{id}")
+
+	@DeleteMapping("/admin/products/{id}")
 	public ResponseEntity<ApiResponse> deleteProductHandler(@PathVariable Long id) throws ProductException{
 		System.out.println("dlete product controller .... ");
 		String msg=productService.deleteProduct(id);
 		System.out.println("dlete product controller .... msg "+msg);
 		ApiResponse res=new ApiResponse(msg,true);
-		
+
 		return new ResponseEntity<ApiResponse>(res,HttpStatus.ACCEPTED);
-		
 	}
 
 	@GetMapping("/public/products")
@@ -64,5 +63,5 @@ public class ProductController {
 		return ResponseEntity.ok(page);
 	}
 
-    
+
 }

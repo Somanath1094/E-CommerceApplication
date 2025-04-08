@@ -37,13 +37,13 @@ public class Product {
     private String description;
 
     @Column(name = "price")
-    private int price;
+    private double price;
 
     @Column(name = "discounted_price")
-    private int discountedPrice;
+    private double discount;
     
     @Column(name="discount_persent")
-    private int discountPersent;
+    private double specialPrice;
 
     @Column(name = "quantity")
     private int quantity;
@@ -98,30 +98,24 @@ public class Product {
 		this.description = description;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
-
-	public int getDiscountedPrice() {
-		return discountedPrice;
+	public double getDiscount() {
+		return discount;
 	}
-
-	public void setDiscountedPrice(int discountedPrice) {
-		this.discountedPrice = discountedPrice;
+	public void setDiscount(double discount) {
+		this.discount = discount;
 	}
-
-	public int getDiscountPersent() {
-		return discountPersent;
+	public double getSpecialPrice() {
+		return specialPrice;
 	}
-
-	public void setDiscountPersent(int discountPersent) {
-		this.discountPersent = discountPersent;
+	public void setSpecialPrice(double specialPrice) {
+		this.specialPrice = specialPrice;
 	}
-
 	public int getQuantity() {
 		return quantity;
 	}

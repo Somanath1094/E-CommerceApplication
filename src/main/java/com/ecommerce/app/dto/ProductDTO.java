@@ -7,16 +7,16 @@ import com.ecommerce.app.domain.Size;
 public class ProductDTO {
 
 	private Long id;
-	
+
 	private String productName;
 
 	private String description;
 
-	private int price;
+	private double price;
 
-	private int discountedPrice;
+	private double discount;
 
-	private int discountPersent;
+	private double specialPrice;
 
 	private int quantity;
 
@@ -46,23 +46,24 @@ public class ProductDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getPrice() {
+	
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
-	public int getDiscountedPrice() {
-		return discountedPrice;
+	public double getDiscount() {
+		return discount;
 	}
-	public void setDiscountedPrice(int discountedPrice) {
-		this.discountedPrice = discountedPrice;
+	public void setDiscount(double discount) {
+		this.discount = discount;
 	}
-	public int getDiscountPersent() {
-		return discountPersent;
+	public double getSpecialPrice() {
+		return specialPrice;
 	}
-	public void setDiscountPersent(int discountPersent) {
-		this.discountPersent = discountPersent;
+	public void setSpecialPrice(double specialPrice) {
+		this.specialPrice = specialPrice;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -94,6 +95,6 @@ public class ProductDTO {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
+
 
 }

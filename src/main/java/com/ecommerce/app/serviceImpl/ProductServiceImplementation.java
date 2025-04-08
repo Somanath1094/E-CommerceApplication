@@ -57,8 +57,9 @@ public class ProductServiceImplementation implements ProductService{
 			product.setColor(productDTO.getColor());
 			product.setBrand(productDTO.getBrand());
 			product.setDescription(productDTO.getDescription());
-			product.setDiscountedPrice(productDTO.getDiscountedPrice());
-			product.setDiscountPersent(productDTO.getDiscountPersent());
+			product.setPrice(productDTO.getPrice());
+			product.setDiscount(productDTO.getDiscount());
+			product.setSpecialPrice(productDTO.getSpecialPrice());
 			product.setCategory(category);
 			product.setImageUrl(productDTO.getImageUrl());
 			product.setCreatedAt(LocalDateTime.now());
@@ -101,18 +102,18 @@ public class ProductServiceImplementation implements ProductService{
 		return "Product deleted Successfully";
 	}
 
-    @Override
-    @Transactional
-    public Page<Product> findAll(Optional<String> searchText, Pageable pageable) {
-    	Page<Product> page = null;
-    	if(searchText.isPresent()) {
-    		page = productRepository.getAllOrBySearchText(searchText.get(),pageable);		
-    		return page;
-    	}
-        return productRepository.findAll(pageable);
-    }
+	@Override
+	@Transactional
+	public Page<Product> findAll(Optional<String> searchText, Pageable pageable) {
+		Page<Product> page = null;
+		if(searchText.isPresent()) {
+			page = productRepository.getAllOrBySearchText(searchText.get(),pageable);		
+			return page;
+		}
+		return productRepository.findAll(pageable);
+	}
 
-	
+
 
 
 }
